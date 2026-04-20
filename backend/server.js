@@ -32,7 +32,7 @@ app.use('/api/comandas', comandasRouter);
 app.use(express.static(path.join(__dirname, '../../frontend')));
 
 // 3. RUTA PARA EL INDEX.HTML (Single Page Application logic)
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
     // Si la petición no es para la API, enviamos el HTML
     if (!req.url.startsWith('/api')) {
         res.sendFile(path.join(__dirname, '../../frontend/html/index.html'));
