@@ -21,7 +21,7 @@ async function obtenerCamisetas(link) {
 
 //Carga la lista de camisetas
 async function cargarProductosIniciales(seccion) {
-    const listaProductos = await obtenerCamisetas("https://teelab-6jex.onrender.com/api/camisetas");
+    const listaProductos = await obtenerCamisetas("https://teelab-backend.onrender.com/api/camisetas");
     if (listaProductos) {
         muestraProductos(listaProductos, seccion);
     } else {
@@ -177,7 +177,7 @@ async function aplicarFiltros(inputs) {
     if (inputs.color.value) params.append("color", inputs.color.value);
     if (inputs.sort.value) params.append("sort", inputs.sort.value);
 
-    const url = `https://teelab-6jex.onrender.com/api/camisetas?${params.toString()}`;
+    const url = `https://teelab-backend.onrender.com/api/camisetas?${params.toString()}`;
     const listaFiltrada = await obtenerCamisetas(url);
 
     if (listaFiltrada) {

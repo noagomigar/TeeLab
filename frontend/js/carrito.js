@@ -128,7 +128,7 @@ function buildOrderPayload(carritoGuardado) {
 //Intenta hacer una peticion con una promesa a la API para enviar la comanda y si no da error 
 async function sendOrder(comanda) {
     try {
-        const response = await fetch("https://teelab-6jex.onrender.com/api/comandas", {
+        const response = await fetch("https://teelab-backend.onrender.com/api/comandas", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(comanda)
