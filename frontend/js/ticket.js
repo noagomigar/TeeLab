@@ -50,7 +50,7 @@ function generateTicketHTML(ticket, htmlItems) {
             <h3>Total Pagado: ${ticket.total.toFixed(2)}€</h3>
         </div>
         
-        <a href="productos.html" class="btn-volver">Volver al catálogo</a>
+        <a href="index.html" class="btn-volver">Volver al catálogo</a>
     `;
 }
 
