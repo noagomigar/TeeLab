@@ -1,0 +1,27 @@
+{
+  "name": "practicacamisetas",
+  "version": "1.0.0",
+  "description": "API REST desarrollada con Node.js y Express para gestionar el catálogo de camisetas y las comandas (pedidos) de la tienda TeeLab.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_ENV=test jest",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.2.2"
+  },
+  "directories": {
+    "test": "tests"
+  }
+}

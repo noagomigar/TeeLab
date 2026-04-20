@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito - TeeLab</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../js/carrito.js" type="module" defer></script>
+</head>
+<body class="bg-layout">
+
+    <header class="topbar">
+        <div class="topbar-brand">TeeLab</div>
+        <nav aria-label="Navegación de retorno">
+            <a href="productos.html" class="btn-nav outline">Volver a la tienda</a>
+        </nav>
+    </header>
+
+    <main class="carrito-layout">
+        <div class="carrito-header">
+            <h1>Tu Carrito de Compra</h1>
+        </div>
+
+        <div class="carrito-content">
+            <section class="carrito-tabla-container" aria-labelledby="titulo-tabla-carrito">
+                <h2 id="titulo-tabla-carrito" class="sr-only">Artículos en tu carrito</h2>
+                
+                <table class="table-moderna">
+                    <thead>
+                        <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Detalles</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-carrito">
+                        </tbody>
+                </table>
+            </section>
+
+            <section class="carrito-resumen" aria-labelledby="titulo-resumen">
+                <div class="resumen-card">
+                    <h2 id="titulo-resumen">Resumen de Compra</h2>
+                    
+                    <dl class="resumen-total">
+                        <dt>Total a pagar:</dt>
+                        <dd id="total-carrito" class="total-destacado">0.00€</dd>
+                    </dl>
+
+                    <div class="resumen-acciones" role="group">
+                        <button id="btn-vaciar-carrito" class="btn-secondary w-full" type="button">Vaciar Carrito</button>
+                        <button id="btn-finalizar-compra" class="btn-primary w-full" type="button">Finalizar Compra</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+</body>
+</html>
