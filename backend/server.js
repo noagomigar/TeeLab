@@ -26,16 +26,16 @@ app.use('/api/camisetas', camisetasRouter);
 app.use('/api/comandas', comandasRouter);
 
 // Frontend
-app.use(express.static(path.join(__dirname, '../../frontend')));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Ruta para la página principal
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/html/productos.html'));
+    res.sendFile(path.join(__dirname, '../frontend/html/productos.html'));
 });
 
 // Ruta para el resto de páginas HTML
 app.get('/:page.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/html', `${req.params.page}.html`));
+    res.sendFile(path.join(__dirname, '../frontend/html', `${req.params.page}.html`));
 });
 
 // Middleware de errores
