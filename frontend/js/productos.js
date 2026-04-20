@@ -69,21 +69,27 @@ function crearImagenYTextos(producto) {
 }
 
 //Crea un selector, pasandole las opciones y el tipo (tallas (S, M, L...), colores(Negro, Azul, Blanco...))
-function crearSelector(opciones, tipo, extraClass = "") {
-    const contenedor = document.createElement("div");
-    contenedor.classList.add("selector-tallas");
-    if (extraClass) contenedor.classList.add(extraClass);
-    contenedor.innerHTML = `<span>${tipo}: </span>`;
+// DESPUÉS
+function crearSelector(opciones, tipo) {
+    const div = document.createElement("div");
+    div.classList.add("form-group");
 
-    opciones.forEach(opcion => {
-        const btn = document.createElement("button");
-        btn.textContent = opcion;
-        btn.type = "button";
-        btn.addEventListener("click", (e) => marcarSeleccion(e, tipo));
-        contenedor.appendChild(btn);
+    const label = document.createElement("label");
+    label.textContent = tipo;
+
+    const select = document.createElement("select");
+    select.classList.add("select-moderno");
+    select.innerHTML = `<option value="">Elige ${tipo.toLowerCase()}...</option>`;
+
+    opciones.forEach(op => {
+        const opt = document.createElement("option");
+        opt.value = op;
+        opt.textContent = op;
+        select.appendChild(opt);
     });
 
-    return contenedor;
+    div.append(label, select);
+    return div;
 }
 
 //Crea el selector de cantidad
@@ -113,21 +119,6 @@ function crearSelectorCantidad() {
     return div;
 }
 
-function marcarSeleccion(evento, tipo) {
-    //Busca todos los botones hermanos dentro del mismo contenedor (todas las tallas o todos los colores)
-    const botones = evento.target.parentElement.querySelectorAll("button");
-    
-    //Les quita la clase a todos para "desmarcar" cualquier opción que se hubiera elegido antes
-    botones.forEach(btn => btn.classList.remove("seleccionada"));
-    
-    //Le pone la clase de selección solo al botón exacto al que le se le ha hecho clic
-    evento.target.classList.add("seleccionada");
-    
-    //Guarda el valor (ej. XL o "Rojo") como un atributo oculto en el HTML (ej. data-talla="XL") 
-    //para que el botón de añadir al carrito pueda leerlo fácilmente después
-    evento.target.dataset[tipo.toLowerCase()] = evento.target.textContent;
-}
-
 //Crea el botón de añadir al carrito
 function crearBotonCarrito(producto, divTallas, divColores, divCantidad) {
     const boton = document.createElement("button");
@@ -141,23 +132,24 @@ function crearBotonCarrito(producto, divTallas, divColores, divCantidad) {
 }
 
 //Añade al carrito un producto
+// DESPUÉS
 function procesarAñadirCarrito(producto, divTallas, divColores, divCantidad) {
-    const btnTalla = divTallas.querySelector(".seleccionada");
-    const btnColor = divColores.querySelector(".seleccionada");
+    const talla = divTallas.querySelector("select").value;
+    const color = divColores.querySelector("select").value;
     const cantidad = parseInt(divCantidad.querySelector(".input-cantidad-producto").value) || 1;
 
-    if (!btnTalla || !btnColor) {
+    if (!talla || !color) {
         return alert("Por favor, selecciona una talla y un color antes de añadir.");
     }
 
     addToCart({
-        camisetaId: producto.id, 
+        camisetaId: producto.id,
         nombre: producto.nombre,
-        talla: btnTalla.textContent,
-        color: btnColor.textContent,
-        cantidad: cantidad, 
+        talla,
+        color,
+        cantidad,
         precio: producto.precioBase,
-        imagen: Object.values(producto.imagenes)[0] 
+        imagen: Object.values(producto.imagenes)[0]
     });
 
     resetearSeleccion(divTallas, divColores, divCantidad);
@@ -196,8 +188,8 @@ async function aplicarFiltros(inputs) {
 
 //Resetea los selectores de la camiseta a su estado inicial 
 function resetearSeleccion(divTallas, divColores, divCantidad) {
-    divTallas.querySelectorAll("button").forEach(btn => btn.classList.remove("seleccionada"));
-    divColores.querySelectorAll("button").forEach(btn => btn.classList.remove("seleccionada"));
+    divTallas.querySelector("select").value = "";
+    divColores.querySelector("select").value = "";
     divCantidad.querySelector(".input-cantidad-producto").value = 1;
 }
 
