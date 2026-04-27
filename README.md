@@ -57,5 +57,5 @@ The API will be available at `http://localhost:3000`
 
 ## Author
 
-[Noa Gomez I Garcia]  
+Noa Gomez I Garcia  
 [GitHub](https://github.com/noagomigar)
